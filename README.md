@@ -33,3 +33,54 @@ GitHub: [https://github.com/yourusername/ClipMCP](https://github.com/yourusernam
 Made by **Blake Aynes** — a tool to help local LLMs work smarter, not harder.
 
 Feedback? Issues? Let me know!
+
+
+
+Here is the script python
+
+ 
+from fastmcp import FastMCP
+import pyperclip
+
+mcp = FastMCP("clipboard")
+
+@mcp.tool()
+def read_clipboard() -> str:
+    """Read the current text content from the system clipboard."""
+    try:
+        content = pyperclip.paste()
+        return content if content else "(clipboard is empty)"
+    except Exception as e:
+        return f"Error reading clipboard: {e}"
+
+@mcp.tool()
+def write_clipboard(text: str) -> str:
+    """Write the given text to the system clipboard."""
+    try:
+        pyperclip.copy(text)
+        return "Successfully wrote text to the clipboard."
+    except Exception as e:
+        return f"Error writing to clipboard: {e}"
+
+if __name__ == "__main__":
+    print("Clipboard MCP server starting...")
+    print("Available tools: read_clipboard, write_clipboard")
+    mcp.run()
+
+
+
+ 
+
+this is the mcp.jason
+
+
+{
+  "mcpServers": {
+    "clipboard": {
+      "command": "python3",
+      "args": [
+        "/path/to/your/clipboard_mcp.py"
+      ]
+    }
+  }
+}
