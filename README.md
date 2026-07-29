@@ -35,10 +35,34 @@ Made by **Blake Aynes** — a tool to help local LLMs work smarter, not harder.
 Feedback? Issues? Let me know!
 
 
+ ```python
+# Your Python code here
+print("Hello, world!")
 
-Here is the script python
 
- 
+This will **render as a formatted code block** in your GitHub README.
+
+---
+
+## ✅ Step 2: Add Your Python Code to the `README.md`
+
+### 📄 Example: Add the `clipboard_mcp.py` code to your `README.md`
+
+You can **embed the Python code** directly in the `README.md` — so users can **see it**, **copy it**, and **run it**.
+
+Here’s how to do it:
+
+### 🔧 Add This to Your `README.md` (After "Setup")
+
+```markdown
+## 🛠️ Python Code
+
+Here’s the full `clipboard_mcp.py` script. Save it to your machine and run it.
+
+```python
+#!/usr/bin/env python3
+# Created by Blake Aynes — a tool to reduce context bloat in LM Studio
+# https://github.com/yourusername/ClipMCP
 from fastmcp import FastMCP
 import pyperclip
 
@@ -64,14 +88,11 @@ def write_clipboard(text: str) -> str:
 
 if __name__ == "__main__":
     print("Clipboard MCP server starting...")
+    print("Created by Blake Aynes")
     print("Available tools: read_clipboard, write_clipboard")
     mcp.run()
 
-
-
- 
-
-this is the mcp.jason
+Add to mcp.json in LM Studio:
 
 
 {
@@ -84,3 +105,4 @@ this is the mcp.jason
     }
   }
 }
+
