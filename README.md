@@ -27,12 +27,8 @@ Then paste a function — no context bloat.
 - Keeps you inside LM Studio
 
 I built this to solve my own workflow problem — and now I’m sharing it.
-
-GitHub: [https://github.com/yourusername/ClipMCP](https://github.com/yourusername/ClipMCP)
-
-Made by **Blake Aynes** — a tool to help local LLMs work smarter, not harder.
-
-Feedback? Issues? Let me know!
+  Made by **Blake Aynes** — a tool to help local LLMs work smarter, not harder.
+  Feedback? Issues? Let me know!
 
 
  ```python
