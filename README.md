@@ -62,41 +62,55 @@ import pyperclip
 
 mcp = FastMCP("clipboard")
 
+#!/usr/bin/env python3
+from mcp.server.fastmcp import FastMCP
+import subprocess
+
+mcp = FastMCP("clipboard")
+
 @mcp.tool()
 def read_clipboard() -> str:
-    """Read the current text content from the system clipboard."""
+    """Read the current macOS clipboard text."""
     try:
-        content = pyperclip.paste()
-        return content if content else "(clipboard is empty)"
+        result = subprocess.run(
+            ["pbpaste"],
+            capture_output=True,
+            text=True,
+            check=True
+        )
+        return result.stdout
     except Exception as e:
         return f"Error reading clipboard: {e}"
 
 @mcp.tool()
-def write_clipboard(text: str) -> str:
-    """Write the given text to the system clipboard."""
+def write_clipboard(content: str) -> str:
+    """Write text to the macOS clipboard."""
     try:
-        pyperclip.copy(text)
-        return "Successfully wrote text to the clipboard."
+        subprocess.run(
+            ["pbcopy"],
+            input=content,
+            text=True,
+            check=True
+        )
+        return "Clipboard updated."
     except Exception as e:
-        return f"Error writing to clipboard: {e}"
+        return f"Error writing clipboard: {e}"
 
 if __name__ == "__main__":
-    print("Clipboard MCP server starting...")
-    print("Created by Blake Aynes")
-    print("Available tools: read_clipboard, write_clipboard")
-    mcp.run()
+    mcp.run(transport="stdio")
 
 Add to mcp.json in LM Studio:
-
 
 {
   "mcpServers": {
     "clipboard": {
-      "command": "python3",
+      "command": "uv",
       "args": [
-        "/path/to/your/clipboard_mcp.py"
+        "run",
+        "--with",
+        "fastmcp",
+        "/Users/blakeaynes/Desktop/chat_cleaner/clipboard_mcp.py"
       ]
     }
   }
-}
-
+} 
