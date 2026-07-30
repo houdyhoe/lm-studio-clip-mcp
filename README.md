@@ -60,9 +60,7 @@ Here’s how to do it:
 Here’s the full `clipboard_mcp.py` script. Save it to your machine and run it.
 
 ```python
-#!/usr/bin/env python3
-# Created by Blake Aynes — a tool to reduce context bloat in LM Studio
-# https://github.com/yourusername/ClipMCP
+ 
 from fastmcp import FastMCP
 import pyperclip
 
